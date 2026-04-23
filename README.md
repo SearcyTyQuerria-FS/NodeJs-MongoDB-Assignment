@@ -1,6 +1,6 @@
 # Medical Record Management API
 
-A RESTful backend API built with Node.js, Express, and MongoDB for managing patients and their medical prescriptions. This project demonstrates modular MVC architecture, database relationship mapping, and full CRUD functionality.
+A RESTful backend API built with Node.js, Express, and MongoDB for managing patients and their medical prescriptions. This project demonstrates modular MVC architecture, database relationship mapping, and full CRUD functionality. 4-23-2026 : Added query for mongoDB data.
 
 ---
 
