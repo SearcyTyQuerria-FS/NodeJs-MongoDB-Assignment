@@ -1,0 +1,97 @@
+/* Container for the whole list */
+.patients-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e3e8ef;
+}
+
+/* Title */
+.patients-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #2a4d69;
+  font-weight: 600;
+}
+
+/* patient card */
+.patient-card {
+  background: #f7faff;
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #dce6f2;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* Hover */
+.patient-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #b7d0ec;
+}
+
+/* name */
+.patient-card h3 {
+  margin: 0 0 10px 0;
+  color: #1f3b57;
+}
+
+/* details */
+.patient-card p {
+  margin: 4px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.card-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+}
+
+.delete-btn,
+.edit-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+/* Delete button */
+.delete-btn {
+  background-color: #e57373;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d9534f;
+}
+
+.delete-btn:active {
+  transform: scale(0.97);
+}
+
+/* Edit button */
+.edit-btn {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #3b7ac2;
+}
+
+.edit-btn:active {
+  transform: scale(0.97);
+}

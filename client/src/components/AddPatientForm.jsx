@@ -1,25 +1,38 @@
 import { useState } from "react";
 import "./AddPatientForm.css";
 
-function AddPatientForm() {
+function AddPatientForm({ refreshPatients }) {
   const [formData, setFormData] = useState({
     name: "",
     age: "",
     diagnosis: "",
     medications: "",
+    doctorName: "",
   });
 
-  function handleChange(e) {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  }
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-  }
+
+    await fetch("http://localhost:5000/patients", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    setFormData({
+      name: "",
+      age: "",
+      diagnosis: "",
+      medications: "",
+      doctorName: "",
+    });
+
+    refreshPatients(); // auto-refresh list
+  };
 
   return (
     <div className="form-container">
@@ -33,12 +46,7 @@ function AddPatientForm() {
 
         <div className="form-group">
           <label>Age:</label>
-          <input
-            name="age"
-            type="number"
-            value={formData.age}
-            onChange={handleChange}
-          />
+          <input name="age" value={formData.age} onChange={handleChange} />
         </div>
 
         <div className="form-group">
@@ -59,9 +67,16 @@ function AddPatientForm() {
           />
         </div>
 
-        <button className="submit-btn" type="submit">
-          Add Patient
-        </button>
+        <div className="form-group">
+          <label>Doctor Name:</label>
+          <input
+            name="doctorName"
+            value={formData.doctorName}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit">Add Patient</button>
       </form>
     </div>
   );

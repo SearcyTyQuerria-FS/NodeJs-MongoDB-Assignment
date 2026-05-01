@@ -1,57 +1,85 @@
+/* Page background */
+body {
+  background-color: lightblue;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Centered card container */
 .form-container {
-  max-width: 450px;
+  max-width: 420px;
   margin: 60px auto;
   padding: 30px;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e3e8ef;
 }
 
+/* Title */
 .form-container h2 {
   text-align: center;
   margin-bottom: 25px;
-  color: #1a4d7a; /* maybe this color for clinic*/
+  color: #2a4d69;
   font-weight: 600;
 }
 
+/* Form group spacing */
 .form-group {
   margin-bottom: 18px;
 }
 
+/* Labels */
 .form-group label {
   display: block;
   margin-bottom: 6px;
   font-size: 14px;
-  color: #333;
+  color: #3a3a3a;
 }
 
+/* Inputs */
 .form-group input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #c9d1d9;
-  border-radius: 6px;
+  height: 25px;
+  padding: 10px 12px;
+  border: 1px solid #2fbae8;
+  border-radius: 8px;
   font-size: 15px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+/* Focus state */
 .form-group input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25);
   outline: none;
-  border-color: #1a73e8;
-  box-shadow: 0 0 3px rgba(26, 115, 232, 0.3);
 }
 
+/* Submit button */
+button,
 .submit-btn {
   width: 100%;
   padding: 12px;
-  background: #1a73e8;
+  background-color: #4a90e2;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 }
 
+button:hover,
 .submit-btn:hover {
-  background: #155bb5;
+  background-color: #3b7ac2;
+}
+
+button:active,
+.submit-btn:active {
+  transform: scale(0.98);
 }
