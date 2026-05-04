@@ -1,5 +1,6 @@
 const Patient = require("../models/Patient.js");
 
+// get all
 exports.getAllPatients = async (req, res) => {
   try {
     const reqQuery = { ...req.query };
@@ -36,64 +37,90 @@ exports.getAllPatients = async (req, res) => {
     query = query.skip(skip).limit(limit);
     const patients = await query;
 
-    res
-      .status(200)
-      .json({ success: true, count: patients.length, data: patients });
+    res.status(200).json({
+      success: true,
+      count: patients.length,
+      data: patients,
+    });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
+// get by id
 exports.getPatientById = async (req, res) => {
   try {
     const patient = await Patient.findById(req.params.id);
+
     if (!patient) {
       return res
         .status(404)
         .json({ success: false, message: "Patient not found" });
     }
+
     res.status(200).json({ success: true, data: patient });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({ success: false, message: "Invalid ID format" });
   }
 };
 
+// CREATE PATIENT
 exports.createPatient = async (req, res) => {
   try {
     const newPatient = await Patient.create(req.body);
     res.status(201).json({ success: true, data: newPatient });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        message: Object.values(error.errors).map((e) => e.message),
+      });
+    }
+
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
+// update patient
 exports.updatePatient = async (req, res) => {
   try {
     const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
+
     if (!patient) {
       return res
         .status(404)
         .json({ success: false, message: "Patient not found" });
     }
+
     res.status(200).json({ success: true, data: patient });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    if (error.name === "ValidationError") {
+      return res.status(400).json({
+        success: false,
+        message: Object.values(error.errors).map((e) => e.message),
+      });
+    }
+
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
+// delete patient
 exports.deletePatient = async (req, res) => {
   try {
     const patient = await Patient.findByIdAndDelete(req.params.id);
+
     if (!patient) {
       return res
         .status(404)
         .json({ success: false, message: "Patient not found" });
     }
+
     res.status(200).json({ success: true, data: {} });
   } catch (error) {
-    res.status(400).json({ success: false, error: error.message });
+    res.status(400).json({ success: false, message: "Invalid ID format" });
   }
 };

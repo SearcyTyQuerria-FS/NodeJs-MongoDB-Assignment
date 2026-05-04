@@ -1,11 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./PatientsList.css";
 
 function PatientsList({ patients, refreshPatients }) {
+  const [editingId, setEditingId] = useState(null);
+  const [editForm, setEditForm] = useState({
+    diagnosis: "",
+    medications: "",
+  });
+
   const deletePatient = async (id) => {
-    await fetch(`http://localhost:5000/patients/${id}`, {
+    await fetch(`http://localhost:3000/api/v1/patients/${id}`, {
       method: "DELETE",
     });
+    refreshPatients();
+  };
+
+  const editPatient = async (id) => {
+    await fetch(`http://localhost:3000/api/v1/patients/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(editForm),
+    });
+
+    setEditingId(null);
     refreshPatients();
   };
 
@@ -23,6 +40,7 @@ function PatientsList({ patients, refreshPatients }) {
         patients.map((p) => (
           <div key={p._id} className="patient-card">
             <h3>{p.name}</h3>
+
             <p>
               <strong>Doctor:</strong> {p.doctorName}
             </p>
@@ -40,7 +58,6 @@ function PatientsList({ patients, refreshPatients }) {
               {new Date(p.createdAt).toLocaleString()}
             </p>
 
-            {/* action buttons */}
             <div className="card-actions">
               <button
                 className="delete-btn"
@@ -49,8 +66,44 @@ function PatientsList({ patients, refreshPatients }) {
                 Delete
               </button>
 
-              <button className="edit-btn">Edit Prescription</button>
+              <button
+                className="edit-btn"
+                onClick={() => {
+                  setEditingId(p._id);
+                  setEditForm({
+                    diagnosis: p.diagnosis,
+                    medications: p.medications,
+                  });
+                }}
+              >
+                Edit Prescription
+              </button>
             </div>
+
+            {editingId === p._id && (
+              <div className="edit-form">
+                <input
+                  name="diagnosis"
+                  value={editForm.diagnosis}
+                  onChange={(e) =>
+                    setEditForm({ ...editForm, diagnosis: e.target.value })
+                  }
+                  placeholder="Diagnosis"
+                />
+
+                <input
+                  name="medications"
+                  value={editForm.medications}
+                  onChange={(e) =>
+                    setEditForm({ ...editForm, medications: e.target.value })
+                  }
+                  placeholder="Medications"
+                />
+
+                <button onClick={() => editPatient(p._id)}>Save</button>
+                <button onClick={() => setEditingId(null)}>Cancel</button>
+              </div>
+            )}
           </div>
         ))
       )}

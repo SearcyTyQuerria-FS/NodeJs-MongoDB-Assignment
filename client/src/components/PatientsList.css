@@ -1,97 +1,110 @@
 /* Container for the whole list */
 .patients-container {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e3e8ef;
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
 }
 
-/* Title */
-.patients-container h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #2a4d69;
-  font-weight: 600;
-}
-
-/* patient card */
+/* Each patient card */
 .patient-card {
-  background: #f7faff;
-  padding: 18px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #dce6f2;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    border-color 0.15s ease;
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Hover */
-.patient-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-color: #b7d0ec;
-}
-
-/* name */
+/* Patient name */
 .patient-card h3 {
-  margin: 0 0 10px 0;
-  color: #1f3b57;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
 }
 
-/* details */
-.patient-card p {
-  margin: 4px 0;
-  font-size: 15px;
-  color: #333;
-}
-
+/* Action buttons container */
 .card-actions {
   margin-top: 12px;
   display: flex;
   gap: 10px;
 }
 
-.delete-btn,
-.edit-btn {
-  padding: 8px 14px;
+/* Delete button */
+.delete-btn {
+  background-color: #ff4d4d;
+  color: white;
   border: none;
+  padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
-  transition:
-    background-color 0.2s ease,
-    transform 0.1s ease;
-}
-
-/* Delete button */
-.delete-btn {
-  background-color: #e57373;
-  color: white;
 }
 
 .delete-btn:hover {
-  background-color: #d9534f;
-}
-
-.delete-btn:active {
-  transform: scale(0.97);
+  background-color: #e04444;
 }
 
 /* Edit button */
 .edit-btn {
-  background-color: #4a90e2;
+  background-color: #007bff;
   color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .edit-btn:hover {
-  background-color: #3b7ac2;
+  background-color: #0069d9;
 }
 
-.edit-btn:active {
-  transform: scale(0.97);
+/* Inline edit form */
+.edit-form {
+  margin-top: 14px;
+  padding: 12px;
+  background: #f7faff;
+  border: 1px solid #cfe2ff;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Inputs inside edit form */
+.edit-form input {
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Save + Cancel buttons */
+.edit-form button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Save button */
+.edit-form button:first-of-type {
+  background-color: #28a745;
+  color: white;
+}
+
+.edit-form button:first-of-type:hover {
+  background-color: #218838;
+}
+
+/* Cancel button */
+.edit-form button:last-of-type {
+  background-color: #6c757d;
+  color: white;
+}
+
+.edit-form button:last-of-type:hover {
+  background-color: #5a6268;
 }

@@ -1,31 +1,64 @@
-# Medical Record Management API
+# 🏥 Patient Management System (Full‑Stack MERN App)
 
-A RESTful backend API built with Node.js, Express, and MongoDB for managing patients and their medical prescriptions. This project demonstrates modular MVC architecture, database relationship mapping, and full CRUD functionality. 4-23-2026 : Added query for mongoDB data.
-
----
-
-## Technologies Used
-
-- **Node.js & Express.js** — Server-side logic and routing
-- **MongoDB Atlas & Mongoose** — Cloud database storage and object data modeling
-- **Dotenv** — Environment variable management
+A full‑stack medical dashboard built with **React, Node.js, Express, and MongoDB**
+for managing patient records and prescriptions.  
+This project demonstrates real‑world CRUD operations, validation on both frontend
+and backend, clean UI/UX, and modular MVC architecture.
 
 ---
 
-## Project Structure
+## 🚀 Features
 
-The codebase follows a modular structure for maintainability:
+- Add, edit, and delete patient records
+- Inline prescription editing
+- Frontend + backend validation
+- Styled medical dashboard UI
+- Welcome header for branding
+- MongoDB database with Mongoose models
+- RESTful API with full CRUD
+- Clean component structure (React)
+- Error handling with red alert boxes
+- Auto‑refresh after actions
+
+---
+
+## 🧰 Technologies Used
+
+### **Frontend**
+
+- React (Hooks, Components)
+- CSS (custom styling)
+- Fetch API
+
+### **Backend**
+
+- Node.js & Express.js
+- MongoDB Atlas
+- Mongoose (ODM)
+- Dotenv (environment variables)
+
+---
+
+## 📁 Project Structure
 
 ```
-/models        # Mongoose schemas defining data structure and relationships
-/controllers   # Core CRUD logic and database interactions
-/routes        # HTTP methods mapped to controller functions
-/app           # App configuration and route aggregation
+/client
+  /src
+    /components
+      AddPatientForm.jsx
+      PatientsList.jsx
+    App.jsx
+    index.css
+/server
+  /models        # Mongoose schemas
+  /controllers   # CRUD logic + validation handling
+  /routes        # API routes
+  app.js         # Express app config
 ```
 
 ---
 
-## Installation & Setup
+## 🛠 Installation & Setup
 
 ### 1. Clone the repository
 
@@ -41,58 +74,76 @@ npm install
 
 ### 3. Environment Setup
 
-Create a `.env` file in the root directory and add:
+Create a `.env` file in the root directory:
 
 ```
 PORT=3000
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0...
+MONGO_URI=mongodb+srv<username>:<password>@cluster0...
 ```
 
-### 4. Run the server
+### 4. Run the backend server
 
 ```bash
 npm run dev
 ```
 
----
+### 5. Run the React frontend
 
-## API Endpoints
-
-### Prescriptions
-
-| Method | Endpoint                    | Description                                        |
-| ------ | --------------------------- | -------------------------------------------------- |
-| GET    | `/api/v1/prescriptions`     | Retrieve all prescriptions (includes patient data) |
-| GET    | `/api/v1/prescriptions/:id` | Retrieve a single prescription by ID               |
-| POST   | `/api/v1/prescriptions`     | Create a new prescription                          |
-| PUT    | `/api/v1/prescriptions/:id` | Update an existing prescription                    |
-| DELETE | `/api/v1/prescriptions/:id` | Delete a prescription                              |
+```bash
+npm start
+```
 
 ---
 
-### Patients
+## 🔌 API Endpoints
 
-| Method | Endpoint           | Description                 |
-| ------ | ------------------ | --------------------------- |
-| POST   | `/api/v1/patients` | Create a new patient record |
+### **Patients**
 
-Additional CRUD routes for patients follow standard REST conventions.
+| Method | Endpoint               | Description                      |
+| ------ | ---------------------- | -------------------------------- |
+| GET    | `/api/v1/patients`     | Get all patients                 |
+| GET    | `/api/v1/patients/:id` | Get a single patient             |
+| POST   | `/api/v1/patients`     | Create a new patient             |
+| PUT    | `/api/v1/patients/:id` | Update patient (with validation) |
+| DELETE | `/api/v1/patients/:id` | Delete patient                   |
+
+### **Prescriptions**
+
+| Method | Endpoint                    | Description                     |
+| ------ | --------------------------- | ------------------------------- |
+| GET    | `/api/v1/prescriptions`     | Retrieve all prescriptions      |
+| GET    | `/api/v1/prescriptions/:id` | Retrieve a single prescription  |
+| POST   | `/api/v1/prescriptions`     | Create a new prescription       |
+| PUT    | `/api/v1/prescriptions/:id` | Update an existing prescription |
+| DELETE | `/api/v1/prescriptions/:id` | Delete a prescription           |
 
 ---
 
-## Error Handling
+## 🧪 Validation
 
-The API uses standard HTTP status codes:
+### **Backend Validation**
 
-- **200 OK** — Request succeeded
-- **201 Created** — Resource successfully created
-- **400 Bad Request** — Validation error or malformed request
-- **404 Not Found** — Resource does not exist
+- Required fields
+- Min/max age
+- String trimming
+- Custom error messages
+- `runValidators: true` on updates
+- Clean JSON error responses
+
+### **Frontend Validation**
+
+- Prevent empty fields
+- Age must be a number
+- Inline red error box
+- Disabled submission until valid
 
 ---
 
-## Notes
+## 🎨 UI/UX Enhancements
 
-- Built with scalability and maintainability in mind
-- Follows MVC architecture principles
-- Designed for easy extension (e.g., authentication, role management)
+- Welcome header: _“Welcome to the Patient Management System”_
+- Soft medical blue‑gray background
+- Clean card layout for patients
+- Inline edit form for prescriptions
+- Red bold error alerts
+- Consistent spacing and typography
